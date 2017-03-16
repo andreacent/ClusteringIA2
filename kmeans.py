@@ -4,7 +4,6 @@
 # Este algoritmo es una adaptacion de la implementacion de Ricardo Moya,
 # encontrada en https://jarroba.com/k-means-python-scikit-learn-ejemplos/
 #
-import sys
 import numpy as np
 import random
 
@@ -28,18 +27,12 @@ class Cluster:
         self.centroid = self.calculate_centroid()
         self.converge = np.array_equal(old_centroid, self.centroid)
 
-def print_results(clusters):
-    for i, c in enumerate(clusters):
-        print ('CLUSTER',i + 1)
-        print('\tNúmero de puntos:', len(c.points))
-        print ('\tCentroide:',str(c.centroid))
-
 ##############################################
 # Calculate the nearest cluster
 # @param clusters: old clusters
 # @param point: point to assign cluster
 # @return: index of list cluster
-def get_nearest_cluster(clusters, point):
+def get_nearest(clusters, point):
     dist = np.zeros(len(clusters))
     for i, c in enumerate(clusters):
         _sum = 0
@@ -64,7 +57,7 @@ def kmeans(k,points,iterations):
 
         # Assign points in nearest centroid
         for p in points:
-            i_cluster = get_nearest_cluster(clusters, p)
+            i_cluster = get_nearest(clusters, p)
             new_points[i_cluster].append(p)
 
         # Set new points in clusters and calculate de new centroids
@@ -74,30 +67,4 @@ def kmeans(k,points,iterations):
         iterations -= 1
 
     # Print final result
-    print_results(clusters)
-
-
-##############################################
-# Read file
-# @param [File] filename : file with data
-def readDataFile(filename):
-    points = []
-
-    with open(filename, 'r', encoding="utf-8") as data_file:
-        for line in data_file:
-            _line =line.split(",")
-            _line.pop()
-            l = [float(li) for li in _line]
-            points.append(np.array(l))
-
-    return points
-
-##############################################
-# MAIN
-def main(argv):
-    MAX_ITERATIONS = 1000
-    points = readDataFile(argv[1])
-    kmeans(3,points,MAX_ITERATIONS)
-
-if __name__ == "__main__":
-    main(sys.argv)
+    return clusters
