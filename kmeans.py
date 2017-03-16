@@ -1,63 +1,103 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
+# Este algoritmo es una adaptacion de la implementacion de Ricardo Moya,
+# encontrada en https://jarroba.com/k-means-python-scikit-learn-ejemplos/
+#
 import sys
 import numpy as np
+import random
 
-#Split data
-def split(data,percentage):
-    rows=len(data)
-    trainRows=int(round((percentage*rows)/float(100)))
-    trainD = data[:trainRows]
-    testD = data[trainRows:]
-    return trainD,testD
+class Cluster:
+    def __init__(self, points):
+        self.points = points
+        self.centroid = self.calculate_centroid()
+        self.converge = False
+
+    def calculate_centroid(self):        
+        sum_coordinates = np.zeros(len(self.points[0]))
+        for p in self.points:
+            for i, x in enumerate(p):
+                sum_coordinates[i] += x
+
+        return (sum_coordinates / len(self.points)).tolist()
+
+    def update_cluster(self, points):
+        old_centroid = self.centroid
+        self.points = points
+        self.centroid = self.calculate_centroid()
+        self.converge = np.array_equal(old_centroid, self.centroid)
+
+def print_results(clusters):
+    for i, c in enumerate(clusters):
+        print ('CLUSTER',i + 1)
+        print('\tNúmero de puntos:', len(c.points))
+        print ('\tCentroide:',str(c.centroid))
+
+##############################################
+# Calculate the nearest cluster
+# @param clusters: old clusters
+# @param point: point to assign cluster
+# @return: index of list cluster
+def get_nearest_cluster(clusters, point):
+    dist = np.zeros(len(clusters))
+    for i, c in enumerate(clusters):
+        _sum = 0
+        for k in range(len(point)):
+            _sum += ((point[k] - c.centroid[k]) ** 2)
+        dist[i] = abs(_sum)
+    return np.argmin(dist)
+
+##############################################
+# Read file
+# @param Int k : number of clusters
+# @param [Array[Int]] points 
+def kmeans(k,points,iterations):
+    # Select k points random to initiacize the k Clusters
+    initial = random.sample(points, k)
+    # Create K clusters
+    clusters = [Cluster([p]) for p in initial]
+    
+    while (not all([c.converge for c in clusters])) and (iterations > 0):
+        # Lists to save the new points of cluster
+        new_points = [[] for i in range(k)]
+
+        # Assign points in nearest centroid
+        for p in points:
+            i_cluster = get_nearest_cluster(clusters, p)
+            new_points[i_cluster].append(p)
+
+        # Set new points in clusters and calculate de new centroids
+        for i, c in enumerate(clusters):
+            c.update_cluster(new_points[i])
+
+        iterations -= 1
+
+    # Print final result
+    print_results(clusters)
+
 
 ##############################################
 # Read file
 # @param [File] filename : file with data
 def readDataFile(filename):
-    inputs,target, data = [],[],[]
+    points = []
 
     with open(filename, 'r', encoding="utf-8") as data_file:
         for line in data_file:
-            l =line.split(",")
+            _line =line.split(",")
+            _line.pop()
+            l = [float(li) for li in _line]
+            points.append(np.array(l))
 
-            #Iris-setosa: 0,0
-            if (l[-1][:-1] == "Iris-setosa"):
-                data.append([ float(l[0]), float(l[1]), float(l[2]), float(l[3]), float(0), float(0) ])
-
-            #Iris-versicolor: 0,1
-            elif(l[-1][:-1] == "Iris-versicolor"):
-                data.append([ float(l[0]), float(l[1]), float(l[2]), float(l[3]), float(0), float(1)])
-
-            #Iris-virginica: 1,0
-            elif(l[-1][:-1] == "Iris-virginica"):
-                data.append([ float(l[0]), float(l[1]), float(l[2]), float(l[3]), float(1), float(0) ])
-
-
-        np.random.shuffle(data)
-            
-        for d in data:
-            inputs.append([ d[0], d[1], d[2], d[3] ])
-            target.append([ d[4], d[5] ])
-
-    return inputs, target
-
-##############################################
-# Read file
-# @param Int k : number of clusters
-# @param [Int] dataset 
-#https://jarroba.com/k-means-python-scikit-learn-ejemplos/
-def kmeans(k,dataset):
-    #Iniciar K clustering con sus centroides u
-    while True:
-        sum_x = 0
-        for i in range(len(dataset)):
-            #argmin
-            sum_x += x[i]
-        for j in range(k):
-            u[j] = sum_x/n 
+    return points
 
 ##############################################
 # MAIN
 def main(argv):
-    inputs, target = readDataFile(argv[1])
+    MAX_ITERATIONS = 1000
+    points = readDataFile(argv[1])
+    kmeans(3,points,MAX_ITERATIONS)
+
+if __name__ == "__main__":
+    main(sys.argv)
