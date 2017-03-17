@@ -18,9 +18,8 @@ def loadImage(imagename):
     pixels = []
     for i in range(int(x)):
         for j in range(int(y)):
-            rgb = [float(c) for c in range(rgb_size)]
-            pixel = km.Pixel([i,j],rgb)
-            pixels.append(pixel)
+            rgb = [int(pix[i,j][c]) for c in range(rgb_size)]
+            pixels.append(km.Pixel([i,j],rgb))
 
     picture.close()
     return pixels
@@ -28,7 +27,7 @@ def loadImage(imagename):
 ##############################################
 # Compress image
 # @param [File] imagename : Picture
-def compressImage(imagename, clusters):
+def compressImage(imagename, clusters,k):
 
     picture = Image.open(imagename)
     pix = picture.load()
@@ -36,9 +35,10 @@ def compressImage(imagename, clusters):
     for cluster in clusters:
         for pixel in cluster.pixels:
 
-            pix[pixel.coordinates[0],pixel.coordinates[1]] = pixel.rgb()
+            pix[pixel.coordinates[0],pixel.coordinates[1]] = cluster.centroid_rgb()
 
-    imagen.save('Imagenes/comprimida.imagen.'+str(imagen.format))
+    name = imagename.split('.')
+    picture.save(name[0]+'_K'+str(k)+"."+name[1])
 
     picture.close()
 
@@ -47,11 +47,11 @@ def compressImage(imagename, clusters):
 def main(argv):
     MAX_ITERATIONS = 1000
     pixels = loadImage(argv[1])
+    k = int(argv[2])
 
-    k = 2
     clusters = km.kmeans(k,pixels,MAX_ITERATIONS)
 
-    compressImage(argv[1],clusters)
+    compressImage(argv[1],clusters,k)
 
 if __name__ == "__main__":
     main(sys.argv)

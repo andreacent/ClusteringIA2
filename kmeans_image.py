@@ -8,14 +8,14 @@ class Pixel:
         self.coordinates = coordinates
         self.rgb = rgb
 
-    def rgb():
-        return (self.rgb[0],self.rgb[1],self.rgb[2])
-
 class Cluster:
     def __init__(self, pixels):
         self.pixels = pixels
         self.centroid = self.calculate_centroid()
         self.converge = False
+
+    def centroid_rgb(self):
+        return (int(self.centroid[0]),int(self.centroid[1]),int(self.centroid[2]))
 
     def calculate_centroid(self):        
         sum_coordinates = np.zeros(len(self.pixels[0].rgb))
