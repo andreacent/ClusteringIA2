@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Este algoritmo es una adaptacion de la implementacion de Ricardo Moya,
-# encontrada en https://jarroba.com/k-means-python-scikit-learn-ejemplos/
+# Pseudocodigo https://jarroba.com/k-means-python-scikit-learn-ejemplos/
 #
 import numpy as np
 import random

@@ -42,7 +42,7 @@ def readDataFile(filename):
 # MAIN
 def main(argv):
     MAX_ITERATIONS = 1000
-    points,p_types = readDataFile(argv[1])
+    points,p_types = readDataFile("Iris_Data_Set/iris.data")
 
     for k in range(2,6):
         print('\n---NUMERO DE CLUSTERS---',k)

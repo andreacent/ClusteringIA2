@@ -1,4 +1,3 @@
-
 ---NUMERO DE CLUSTERS--- 2
 CLUSTER 1
    Número de puntos: 53
