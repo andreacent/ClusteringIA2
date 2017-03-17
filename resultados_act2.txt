@@ -1,0 +1,92 @@
+
+---NUMERO DE CLUSTERS--- 2
+CLUSTER 1
+   Número de puntos: 53
+   Centroide: [5.005660377358491, 3.360377358490567, 1.562264150943396, 0.2886792452830188]
+   Iris-virginica 0
+   Iris-versicolor 3
+   Iris-setosa 50
+CLUSTER 2
+   Número de puntos: 97
+   Centroide: [6.30103092783505, 2.8865979381443303, 4.958762886597939, 1.6958762886597945]
+   Iris-virginica 50
+   Iris-versicolor 47
+   Iris-setosa 0
+
+---NUMERO DE CLUSTERS--- 3
+CLUSTER 1
+   Número de puntos: 38
+   Centroide: [6.8500000000000005, 3.073684210526315, 5.742105263157893, 2.0710526315789473]
+   Iris-virginica 36
+   Iris-versicolor 2
+   Iris-setosa 0
+CLUSTER 2
+   Número de puntos: 50
+   Centroide: [5.005999999999999, 3.4180000000000006, 1.464, 0.2439999999999999]
+   Iris-virginica 0
+   Iris-versicolor 0
+   Iris-setosa 50
+CLUSTER 3
+   Número de puntos: 62
+   Centroide: [5.901612903225807, 2.748387096774194, 4.393548387096775, 1.4338709677419357]
+   Iris-virginica 14
+   Iris-versicolor 48
+   Iris-setosa 0
+
+---NUMERO DE CLUSTERS--- 4
+CLUSTER 1
+   Número de puntos: 24
+   Centroide: [7.0583333333333345, 3.1124999999999994, 5.995833333333333, 2.1458333333333335]
+   Iris-virginica 24
+   Iris-versicolor 0
+   Iris-setosa 0
+CLUSTER 2
+   Número de puntos: 30
+   Centroide: [5.579999999999998, 2.6333333333333337, 3.986666666666667, 1.2333333333333334]
+   Iris-virginica 1
+   Iris-versicolor 29
+   Iris-setosa 0
+CLUSTER 3
+   Número de puntos: 46
+   Centroide: [6.291304347826086, 2.9021739130434776, 4.93695652173913, 1.7195652173913039]
+   Iris-virginica 25
+   Iris-versicolor 21
+   Iris-setosa 0
+CLUSTER 4
+   Número de puntos: 50
+   Centroide: [5.005999999999999, 3.4180000000000006, 1.464, 0.2439999999999999]
+   Iris-virginica 0
+   Iris-versicolor 0
+   Iris-setosa 50
+
+---NUMERO DE CLUSTERS--- 5
+CLUSTER 1
+   Número de puntos: 50
+   Centroide: [5.005999999999999, 3.4180000000000006, 1.464, 0.2439999999999999]
+   Iris-virginica 0
+   Iris-versicolor 0
+   Iris-setosa 50
+CLUSTER 2
+   Número de puntos: 25
+   Centroide: [5.507999999999999, 2.6, 3.908, 1.204]
+   Iris-virginica 1
+   Iris-versicolor 24
+   Iris-setosa 0
+CLUSTER 3
+   Número de puntos: 12
+   Centroide: [7.475000000000001, 3.125, 6.3, 2.0500000000000003]
+   Iris-virginica 12
+   Iris-versicolor 0
+   Iris-setosa 0
+CLUSTER 4
+   Número de puntos: 39
+   Centroide: [6.207692307692308, 2.853846153846154, 4.746153846153846, 1.5641025641025634]
+   Iris-virginica 13
+   Iris-versicolor 26
+   Iris-setosa 0
+CLUSTER 5
+   Número de puntos: 24
+   Centroide: [6.529166666666666, 3.0583333333333336, 5.508333333333333, 2.1624999999999996]
+   Iris-virginica 24
+   Iris-versicolor 0
+   Iris-setosa 0
